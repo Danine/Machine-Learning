@@ -12,5 +12,9 @@ for i in range(16):
 	for j in range(3):
 		u[i,j] = np.random.randint(255)
 print(u)
+for iter in range(100):
+	for i in range(row):
+		for j in range(col):
+			a = 0
 # plt.imshow(value)
 # plt.show()
