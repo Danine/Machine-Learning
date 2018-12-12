@@ -15,6 +15,7 @@ print(u)
 for iter in range(100):
 	for i in range(row):
 		for j in range(col):
-			a = 0
+			for k in range(16):#计算每个点到 16 个初始聚点的欧式距离
+				a = 0
 # plt.imshow(value)
 # plt.show()
