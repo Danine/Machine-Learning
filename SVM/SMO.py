@@ -13,7 +13,7 @@ def SMO(x, y, C):
 		zij = x * xt
 		for i in range(length):
 			Ei = alpha * y * zij[:,i] + b - y[i]
-			#不满足kkt条件
+			#不满足kkt条件。KKT条件可用于检查收敛到最佳点
 			if (y[i] * Ei < -tol and alpha[i] < C) or (y[i] * Ei > tol and alpha[i] > 0):
 				for j in range(0,i):
 					Ej = alpha * y * zij[:,j] + b - y[j]
