@@ -1,4 +1,5 @@
 import numpy as np
+import matplotlib.pyplot as plt
 from scipy.sparse import linalg
 import matplotlib.image as img
 import random
@@ -27,14 +28,27 @@ def pca(data,k):
 
 def main():
 	trainD, testD, trainL, testL = loadImageSet()#读入图片集
-	k = 50#取特征的数量，即降维
+
+	k = 10#取特征的数量，即降维
 	Z,trainMean,U = pca(trainD,k)
 	testD = testD - trainMean#对测试集进行归一化
 	testD = np.mat(testD)
 	Z1 = np.array(testD * U[1])#得到测试集的特征矩阵
 
 	testP = [trainL[np.sum((Z-d)**2,1).argmin()]for d in Z1]#欧式距离法得到测试集的预测值label
-	print((testP == testL).mean())
+	print("%.2f%%" %((testP == testL).mean()*100))
+	# 改变k
+	# predict = {}
+	# for k in range(1,50,2):
+	# 	Z,trainMean,U = pca(trainD,k)
+	# 	testD1 = testD - trainMean#对测试集进行归一化
+	# 	testD1 = np.mat(testD1)
+	# 	Z1 = np.array(testD1 * U[1])#得到测试集的特征矩阵
+	# 	testP = [trainL[np.sum((Z-d)**2,1).argmin()]for d in Z1]#欧式距离法得到测试集的预测值label
+	# 	predict[k] = (testP == testL).mean()
+	# 	print("k = %d,%.2f%%" %(k,predict[k]*100))
+	# plt.plot(predict)
+	# plt.show()
 
 	# testP = []
 	# o_length = np.zeros(240)
